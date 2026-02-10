@@ -17,7 +17,7 @@ export default function App() {
     if (t.includes("hair"))
       return "This hair? It defies gravity, logic, and common sense, baby.";
     if (t.includes("love"))
-      return "Easy there, mama. Johnny only loves one thing — Johnny. 😏";
+      return "Easy there, mama. Johnny only loves one thing — Johnny.";
     if (t.includes("coin"))
       return "Whoa mama! Johnny Coin? Profitable AND handsome!";
     if (t.includes("pec"))
@@ -60,117 +60,88 @@ export default function App() {
 
       {/* HERO */}
       <section className="hero">
-        <div className="hero-left">
-          <h1>
-            WHOA
-            <br />
-            MAMA!
-          </h1>
+        <div className="hero-text">
+          <h1>WHOA<br />MAMA!</h1>
 
-          <p className="hero-sub">
+          <div className="tagline">
             The one and only site for the man, the myth, the pompadour!
-          </p>
+          </div>
 
           <div className="hero-buttons">
-            <button
-              className="primary"
-              onClick={() =>
-                document
-                  .getElementById("ask")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              TALK TO ME, BABY!
-            </button>
-
-            <button
-              onClick={() =>
-                document
-                  .getElementById("lifestyle")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              CHECK THE PECS
-            </button>
-
-            <button
-              onClick={() =>
-                document
-                  .getElementById("about")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              ABOUT
-            </button>
+            <button className="btn primary">TALK TO ME, BABY!</button>
+            <button className="btn">CHECK THE PECS</button>
+            <button className="btn">ABOUT</button>
           </div>
         </div>
 
-        <div className="hero-right">
+        <div className="hero-images">
           <img src="/johnny-main.png" alt="Johnny Bravo" className="hero-img" />
-          <img src="/johnny-coin.png" alt="Johnny Coin" className="hero-coin" />
+          <img src="/johnny-coin.png" alt="Johnny Coin" className="coin-img" />
         </div>
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="about">
+      <section className="about">
         <h2>ABOUT JOHNNY</h2>
 
         <div className="about-box">
           <p>
-            Johnny Bravo is not just a man — he’s a lifestyle. A self-made legend
-            with gravity-defying hair, sunglasses worn indoors, and confidence
-            measured in flexes per second.
+            Johnny Bravo is not just a man — he’s a lifestyle.  
+            A self-made legend with gravity-defying hair, sunglasses worn indoors,
+            and confidence measured in flexes per second.
           </p>
 
           <p>
-            Born cool. Raised cooler. Johnny doesn’t chase trends — trends chase
-            Johnny.
+            Born cool. Raised cooler.  
+            Johnny doesn’t chase trends — trends chase Johnny.
           </p>
 
-          <p className="about-quote">“Man, I’m pretty.” — Johnny Bravo</p>
+          <p className="about-quote">
+            “Man, I’m pretty.” — Johnny Bravo
+          </p>
         </div>
       </section>
 
       {/* LIFESTYLE */}
-      <section id="lifestyle" className="lifestyle">
+      <section className="lifestyle">
         <h2>THE JOHNNY LIFESTYLE</h2>
 
-        <div className="lifestyle-grid">
-          <div className="lifestyle-card">
+        <div className="cards">
+          <div className="card">
             <h3>THE HAIR</h3>
             <p>It defies gravity, baby. Just like my charm.</p>
           </div>
 
-          <div className="lifestyle-card dark">
+          <div className="card dark">
             <h3>THE SHADES</h3>
             <p>I wear them indoors because the sun never sets on cool.</p>
           </div>
 
-          <div className="lifestyle-card">
+          <div className="card">
             <h3>THE MOVES</h3>
             <p>
-              I don’t walk — I strut. Every step is a power move. Confidence
-              first, muscles second, rhythm always.
+              I don’t walk — I strut.  
+              Confidence first, muscles second, rhythm always.
             </p>
           </div>
         </div>
       </section>
 
-      {/* STRIP */}
-      <div className="strip">
+      {/* MARQUEE */}
+      <div className="marquee">
         ★ DO THE MONKEY ★ MAN I’M PRETTY ★ HUH! HAH! HUH! ★ DO THE MONKEY ★
       </div>
 
-      {/* ASK */}
-      <section id="ask" className="ask">
+      {/* ASK JOHNNY */}
+      <section className="ask">
         <h2>ASK JOHNNY!</h2>
         <p>I’m pretty, you’re pretty. Let’s talk!</p>
 
         <div className="chat-box">
-          <img src="/johnny-talk.png" alt="Johnny" />
+          <img src="/johnny-main.png" alt="Johnny" />
 
-          <div className="chat-ui">
-            <div className="chat-reply">{reply}</div>
+          <div className="chat">
+            <div className="reply">{reply}</div>
 
             <div className="input-row">
               <input
@@ -183,7 +154,7 @@ export default function App() {
           </div>
         </div>
 
-        <audio ref={audioRef} src="/hah-huh.mp3" />
+        <audio ref={audioRef} src="/johnny.mp3" />
       </section>
     </>
   );
