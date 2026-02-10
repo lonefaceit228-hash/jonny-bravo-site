@@ -271,4 +271,47 @@ body {
   background: black;
   color: white;
 }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 48px;
+  border-bottom: 3px solid #000;
+  background: #ffd900;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-box {
+  background: #000;
+  color: #fff;
+  font-weight: 900;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+.logo-text {
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.community-btn {
+  border: 3px solid #000;
+  padding: 10px 18px;
+  font-weight: 900;
+  text-decoration: none;
+  color: #000;
+  background: #ffd900;
+  box-shadow: 4px 4px 0 #000;
+  transition: all 0.15s ease;
+}
+
+.community-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #000;
+}
 
