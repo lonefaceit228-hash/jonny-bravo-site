@@ -12,20 +12,18 @@ export default function App() {
   const aboutRef = useRef<HTMLDivElement | null>(null);
   const askRef = useRef<HTMLDivElement | null>(null);
 
-  // 🎬 Johnny entrance (1 раз)
   useEffect(() => {
     setTimeout(() => setShowJohnny(true), 300);
   }, []);
 
-  // 💥 COMIC BURST
   const spawnBurst = (text: string) => {
-    const burst = document.createElement("div");
-    burst.className = "comic-burst";
-    burst.innerText = text;
-    burst.style.left = `${50 + (Math.random() * 30 - 15)}%`;
-    burst.style.top = `${40 + (Math.random() * 30 - 15)}%`;
-    document.body.appendChild(burst);
-    setTimeout(() => burst.remove(), 900);
+    const el = document.createElement("div");
+    el.className = "comic-burst";
+    el.innerText = text;
+    el.style.left = `${50 + (Math.random() * 30 - 15)}%`;
+    el.style.top = `${40 + (Math.random() * 30 - 15)}%`;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 900);
   };
 
   const getJohnnyReply = (text: string) => {
@@ -54,10 +52,12 @@ export default function App() {
           <div className="logo-box">JB</div>
           <strong>Johnny Bravo</strong>
         </div>
+
         <a
           className="community-btn"
           href="https://x.com/i/communities/2020974893467099418"
           target="_blank"
+          rel="noreferrer"
         >
           X COMMUNITY ↗
         </a>
@@ -66,7 +66,12 @@ export default function App() {
       {/* HERO */}
       <section className="hero">
         <div className="hero-text">
-          <h1>WHOA<br />MAMA!</h1>
+          <h1>
+            WHOA
+            <br />
+            MAMA!
+          </h1>
+
           <p className="tagline">
             The one and only site for the man, the myth, the pompadour!
           </p>
@@ -105,7 +110,6 @@ export default function App() {
           </div>
         </div>
 
-        {/* 👇 ВАЖНО: класс show остаётся */}
         <div className={`hero-images ${showJohnny ? "show" : ""}`}>
           <img src="/johnny-hero.png" className="hero-img" />
           <img src="/johnny-coin.png" className="coin-img" />
@@ -115,12 +119,16 @@ export default function App() {
       {/* ABOUT */}
       <section className="about" ref={aboutRef}>
         <h2>ABOUT JOHNNY</h2>
+
         <div className="about-box">
           <p>
             Johnny Bravo is not just a man — he’s a lifestyle. A self-made legend
             with gravity-defying hair and unstoppable confidence.
           </p>
-          <p className="about-quote">“Man, I’m pretty.” — Johnny Bravo</p>
+
+          <p className="about-quote">
+            “Man, I’m pretty.” — Johnny Bravo
+          </p>
         </div>
       </section>
 
@@ -130,8 +138,10 @@ export default function App() {
 
         <div className="chat-box">
           <img src="/johnny-hero.png" />
+
           <div className="chat-ui">
             <div className="reply">{reply}</div>
+
             <div className="input-row">
               <input
                 value={message}
