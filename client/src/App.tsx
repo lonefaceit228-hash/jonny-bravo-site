@@ -7,111 +7,132 @@ export default function App() {
     "Hey pretty mama! Ask me anything. Hah-huh! 😎"
   );
 
-  const lifestyleRef = useRef<HTMLDivElement | null>(null);
-  const aboutRef = useRef<HTMLDivElement | null>(null);
-
-  const comicBurst = (text: string, x: number, y: number) => {
-    const el = document.createElement("div");
-    el.className = "comic-burst";
-    el.innerText = text;
-    el.style.left = `${x}px`;
-    el.style.top = `${y}px`;
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 600);
-  };
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const burstRef = useRef<HTMLDivElement | null>(null);
 
   const getJohnnyReply = (text: string) => {
     const t = text.toLowerCase();
-    if (t.includes("how")) return "Looking good, feeling great, flexing constantly 💪😎";
-    if (t.includes("hair")) return "This hair defies gravity AND logic, baby.";
-    if (t.includes("love")) return "Johnny only loves one thing — Johnny.";
-    if (t.includes("coin")) return "Whoa mama! Profitable AND handsome.";
-    if (t.includes("pec")) return "Careful, baby. These pecs bend spacetime.";
+
+    if (t.includes("how"))
+      return "How am I? Looking good, feeling great, flexing constantly. 💪😎";
+    if (t.includes("hair"))
+      return "This hair defies gravity, logic, and common sense, baby.";
+    if (t.includes("love"))
+      return "Easy there, mama. Johnny only loves one thing — Johnny. 😏";
+    if (t.includes("coin"))
+      return "Whoa mama! Johnny Coin? Profitable AND handsome!";
+    if (t.includes("pec"))
+      return "Careful, baby. These pecs have their own gravity field.";
+
     return "Whoa mama! Say that again slower — Johnny was admiring himself.";
+  };
+
+  const playBurst = () => {
+    if (!burstRef.current) return;
+    burstRef.current.classList.remove("show");
+    void burstRef.current.offsetWidth;
+    burstRef.current.classList.add("show");
   };
 
   const sendMessage = () => {
     if (!message.trim()) return;
-    setReply(`Johnny says: ${getJohnnyReply(message)}`);
+
+    const answer = getJohnnyReply(message);
+    setReply(`Johnny says: ${answer}`);
     setMessage("");
+
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
+
+    playBurst();
+  };
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <>
+      {/* AUDIO */}
+      <audio ref={audioRef} src="/hmph.mp3" />
+
+      {/* COMIC BURST */}
+      <div ref={burstRef} className="comic-burst">POW!</div>
+
       {/* HEADER */}
-      <div className="header">
+      <header className="header">
         <div className="logo">
           <div className="logo-box">JB</div>
-          <strong>Johnny Bravo</strong>
+          <span>Johnny Bravo</span>
         </div>
+
         <a
           className="community-btn"
           href="https://x.com/i/communities/2020974893467099418"
           target="_blank"
+          rel="noopener noreferrer"
         >
           X COMMUNITY ↗
         </a>
-      </div>
+      </header>
 
       {/* HERO */}
-      <div className="hero">
-        <div>
+      <section className="hero">
+        <div className="hero-left">
           <h1>WHOA<br />MAMA!</h1>
-          <p>The one and only site for the man, the myth, the pompadour!</p>
+
+          <div className="tagline">
+            The one and only site for the man, the myth, the pompadour!
+          </div>
 
           <div className="hero-buttons">
-            <button
-              className="primary"
-              onClick={(e) => {
-                comicBurst("POW!", e.clientX, e.clientY);
-                document.getElementById("ask")?.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
+            <button className="primary" onClick={() => scrollTo("ask")}>
               TALK TO ME, BABY!
             </button>
-
-            <button
-              onClick={(e) => {
-                comicBurst("BAM!", e.clientX, e.clientY);
-                lifestyleRef.current?.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
+            <button onClick={() => scrollTo("lifestyle")}>
               CHECK THE PECS
             </button>
-
-            <button
-              onClick={(e) => {
-                comicBurst("WHOA!", e.clientX, e.clientY);
-                aboutRef.current?.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
+            <button onClick={() => scrollTo("about")}>
               ABOUT
             </button>
           </div>
         </div>
 
-        <img src="/johnny.png" alt="Johnny" width={320} />
-      </div>
+        <div className="hero-right">
+          <img className="hero-img" src="/johnny-hero.png" alt="Johnny Hero" />
+          <img className="coin-img" src="/johnny-coin.png" alt="Johnny Coin" />
+        </div>
+      </section>
 
       {/* ABOUT */}
-      <div className="about" ref={aboutRef}>
+      <section id="about" className="about">
         <h2>ABOUT JOHNNY</h2>
+
         <div className="about-box">
           <p>
             Johnny Bravo is not just a man — he’s a lifestyle.
-            Gravity-defying hair, sunglasses worn indoors,
-            confidence measured in flexes per second.
+            A self-made legend with gravity-defying hair, sunglasses worn indoors,
+            and confidence measured in flexes per second.
           </p>
-          <p>Born cool. Raised cooler.</p>
-          <p className="about-quote">“Man, I’m pretty.” — Johnny Bravo</p>
+
+          <p>
+            Born cool. Raised cooler.<br />
+            Johnny doesn’t chase trends — trends chase Johnny.
+          </p>
+
+          <p className="about-quote">
+            “Man, I’m pretty.” — Johnny Bravo
+          </p>
         </div>
-      </div>
+      </section>
 
       {/* LIFESTYLE */}
-      <div className="lifestyle" ref={lifestyleRef}>
+      <section id="lifestyle" className="lifestyle">
         <h2>THE JOHNNY LIFESTYLE</h2>
 
-        <div className="lifestyle-grid">
+        <div className="cards">
           <div className="card">
             <h3>THE HAIR</h3>
             <p>It defies gravity, baby. Just like my charm.</p>
@@ -124,34 +145,43 @@ export default function App() {
 
           <div className="card">
             <h3>THE MOVES</h3>
-            <p>I don’t walk — I strut. Every step is a power move.</p>
+            <p>
+              I don’t walk — I strut.
+              Every step is a power move.
+              Confidence first, muscles second, rhythm always.
+            </p>
           </div>
         </div>
-      </div>
+      </section>
 
+      {/* MARQUEE */}
       <div className="marquee">
         ★ DO THE MONKEY ★ MAN I’M PRETTY ★ HUH! HAH! HUH! ★ DO THE MONKEY ★
       </div>
 
       {/* ASK */}
-      <div className="ask" id="ask">
+      <section id="ask" className="ask">
         <h2>ASK JOHNNY!</h2>
-        <p>I’m pretty, you’re pretty. Let’s talk!</p>
+        <p className="ask-sub">I’m pretty, you’re pretty. Let’s talk!</p>
 
-        <div className="ask-box">
-          <div className="chat-box">
-            <p>{reply}</p>
+        <div className="chat-box">
+          <img src="/johnny-hero.png" alt="Johnny" />
+
+          <div className="chat-ui">
+            <div className="reply">{reply}</div>
+
             <div className="input-row">
               <input
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Talk to the hair..."
+                onKeyDown={(e) => e.key === "Enter" && sendMessage()}
               />
               <button onClick={sendMessage}>▶</button>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }
