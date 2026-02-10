@@ -33,7 +33,7 @@ body {
 
 .community-btn {
   border: 3px solid #000;
-  padding: 8px 16px;
+  padding: 10px 16px;
   text-decoration: none;
   color: #000;
   font-weight: bold;
@@ -41,136 +41,127 @@ body {
 
 /* HERO */
 .hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 80px 80px 40px;
+  display: flex;
+  justify-content: space-between;
+  padding: 60px;
+  gap: 40px;
 }
 
-.hero h1 {
-  font-size: 96px;
+.hero-text h1 {
+  font-size: 72px;
   margin: 0;
 }
 
-.tagline {
+.hero-sub {
   background: rgba(0, 0, 0, 0.1);
   padding: 12px;
   margin: 20px 0;
-  max-width: 480px;
+  max-width: 420px;
 }
 
-.hero-buttons {
+.hero-actions {
   display: flex;
   gap: 16px;
 }
 
-.btn {
-  border: 3px solid #000;
-  padding: 14px 24px;
-  font-weight: 900;
-  cursor: pointer;
-  background: #fff;
-}
-
-.btn.primary {
+.primary-btn {
   background: #000;
   color: #ffd800;
+  border: 3px solid #000;
+  padding: 14px 20px;
+}
+
+.secondary-btn {
+  background: #fff;
+  border: 3px solid #000;
+  padding: 14px 20px;
 }
 
 .hero-images {
   position: relative;
 }
 
-.hero-main {
+.hero-img {
   width: 320px;
-  transform: rotate(6deg);
-  border: 6px solid #000;
+  transform: rotate(5deg);
+  border: 4px solid #000;
 }
 
-.hero-coin {
-  position: absolute;
+.coin-img {
   width: 160px;
+  position: absolute;
   bottom: -40px;
   left: -40px;
   transform: rotate(-8deg);
-  border: 6px solid #000;
+  border: 4px solid #000;
 }
 
 /* LIFESTYLE */
 .lifestyle {
   background: #fff;
-  padding: 80px;
-}
-
-.lifestyle h2 {
+  padding: 80px 40px;
   text-align: center;
-  font-size: 48px;
-  margin-bottom: 40px;
 }
 
 .cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   gap: 24px;
+  justify-content: center;
 }
 
 .card {
   border: 4px solid #000;
   padding: 32px;
-  text-align: center;
+  width: 280px;
 }
 
-.card.dark {
+.card-dark {
   background: #000;
   color: #fff;
 }
 
-/* TICKER */
-.ticker {
+/* MARQUEE */
+.marquee {
   background: #000;
   color: #fff;
-  padding: 16px;
-  font-weight: 900;
+  padding: 12px;
   text-align: center;
+  font-weight: bold;
 }
 
 /* ASK */
 .ask {
-  padding: 80px;
+  padding: 80px 40px;
   text-align: center;
 }
 
-.ask h2 {
-  font-size: 56px;
-  margin-bottom: 10px;
-}
-
 .ask-sub {
-  opacity: 0.7;
-}
-
-.chat-box {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  margin-top: 40px;
-}
-
-.chat-box img {
-  width: 220px;
-  border: 4px solid #000;
+  margin-bottom: 40px;
 }
 
 .chat {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-img {
+  width: 200px;
   border: 4px solid #000;
-  padding: 24px;
-  max-width: 420px;
+}
+
+.chat-box {
+  border: 4px solid #000;
+  padding: 20px;
   background: #fff;
+  width: 420px;
 }
 
 .reply {
   border: 3px solid #000;
-  padding: 16px;
-  margin-bottom: 16px;
+  padding: 12px;
+  margin-bottom: 12px;
 }
 
 .input-row {
@@ -180,14 +171,13 @@ body {
 
 .input-row input {
   flex: 1;
-  padding: 12px;
+  padding: 10px;
   border: 3px solid #000;
 }
 
 .input-row button {
-  padding: 12px 16px;
-  border: 3px solid #000;
   background: #000;
   color: #ffd800;
-  cursor: pointer;
+  border: 3px solid #000;
+  padding: 0 16px;
 }
