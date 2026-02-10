@@ -1,193 +1,200 @@
+/* RESET */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-family: "Bangers", cursive;
+html, body {
+  font-family: 'Arial Black', Impact, sans-serif;
+  background: #ffd800;
   color: #000;
+}
 
-  /* 🔥 ФОН С JOHNNY */
+/* === GLOBAL BACKGROUND === */
+body {
   background:
     linear-gradient(
       rgba(255, 216, 0, 0.92),
       rgba(255, 216, 0, 0.92)
     ),
     url("/johnny-background.png");
-
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   background-attachment: fixed;
 }
 
-/* NAV */
-.nav {
+/* ================= HEADER ================= */
+.header {
+  height: 70px;
+  border-bottom: 3px solid #000;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding: 16px 32px;
-  border-bottom: 4px solid #000;
+  padding: 0 24px;
+  background: #ffd800;
 }
 
-.logo span {
-  margin-left: 8px;
-}
-
-.x-btn {
-  border: 3px solid #000;
-  padding: 8px 16px;
-  text-decoration: none;
-  color: #000;
-}
-
-/* HERO */
-.hero {
+.logo {
   display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 900;
+}
+
+.logo-badge {
+  background: #000;
+  color: #ffd800;
+  padding: 6px 10px;
+}
+
+/* ================= HERO ================= */
+.hero {
   min-height: 90vh;
-  padding: 60px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  padding: 80px;
+  gap: 60px;
 }
 
-.hero-left {
-  flex: 1;
-}
-
-.hero-left h1 {
+.hero h1 {
   font-size: 96px;
-  line-height: 0.9;
+  line-height: 0.95;
 }
 
-.tagline {
-  background: rgba(0,0,0,0.1);
-  padding: 12px;
-  max-width: 420px;
+.hero p {
+  margin: 24px 0;
+  font-size: 18px;
+  background: rgba(0,0,0,0.08);
+  display: inline-block;
+  padding: 10px 14px;
 }
 
-.buttons button {
-  margin-right: 12px;
-  padding: 14px 22px;
-  font-family: inherit;
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.btn {
   border: 3px solid #000;
-  background: #fff;
+  padding: 14px 20px;
+  font-weight: 900;
   cursor: pointer;
+  background: #fff;
 }
 
-.hero-right {
-  flex: 1;
+.btn.primary {
+  background: #000;
+  color: #ffd800;
+}
+
+/* ================= HERO IMAGE ================= */
+.hero-image {
   position: relative;
 }
 
-.johnny {
-  width: 360px;
+.hero-image img {
+  width: 100%;
+  transform: rotate(-6deg);
 }
 
+/* Johnny enter animation */
 .johnny-enter {
   animation: slideIn 1s ease-out forwards;
 }
 
 @keyframes slideIn {
-  from { transform: translateX(200px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(200px) rotate(-12deg);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) rotate(-6deg);
+    opacity: 1;
+  }
 }
 
-.coin {
-  width: 120px;
-  transform: rotate(-10deg);
-}
-
-/* ABOUT */
-.about {
+/* ================= SECTIONS ================= */
+.section {
+  padding: 120px 80px;
   background: #fff;
-  padding: 100px 40px;
-  text-align: center;
 }
 
-.about-box {
-  background: #ffd800;
-  border: 4px solid #000;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 40px;
+.section.yellow {
+  background: transparent;
 }
 
-/* LIFESTYLE */
-.lifestyle {
-  padding: 80px 40px;
+.section h2 {
+  font-size: 52px;
+  margin-bottom: 40px;
 }
 
+/* ================= CARDS ================= */
 .cards {
-  display: flex;
-  gap: 24px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
 }
 
 .card {
-  border: 4px solid #000;
-  padding: 32px;
-  width: 240px;
+  border: 3px solid #000;
+  padding: 30px;
+  text-align: center;
   background: #fff;
 }
 
-.card.dark {
+.card.black {
   background: #000;
   color: #fff;
 }
 
-/* HOW */
-.how {
-  padding: 80px 40px;
-  text-align: center;
-}
-
-.how-box {
+/* ================= HOW TO BUY ================= */
+.buy-box {
+  max-width: 900px;
+  margin: auto;
   background: #fff;
-  border-radius: 24px;
-  padding: 40px;
-  display: inline-block;
+  padding: 50px;
+  border-radius: 20px;
 }
 
-.how-grid {
+.buy-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 
-.how-grid div {
+.buy-item {
   border: 3px solid #000;
   padding: 16px;
-}
-
-.copy-btn {
-  margin-top: 24px;
-  padding: 14px 24px;
-  border: 3px solid #000;
-  background: #ffd800;
-  font-family: inherit;
-}
-
-/* ASK */
-.ask {
-  padding: 100px 40px;
   text-align: center;
 }
 
-.ask-box {
+.copy-btn {
+  margin-top: 30px;
+  background: #ffd800;
+  border: 3px solid #000;
+  padding: 14px 20px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+/* ================= COMIC BURST ================= */
+.burst {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
   display: flex;
-  gap: 24px;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  font-size: 120px;
+  font-weight: 900;
+  color: red;
+  text-shadow: 6px 6px #000;
+  animation: pop 0.6s ease-out;
 }
 
-.ask-box img {
-  width: 220px;
-}
-
-.chat {
-  border: 4px solid #000;
-  padding: 24px;
-  background: #fff;
-}
-
-.input-row {
-  display: flex;
-  gap: 8px;
-  margin-top: 12px;
+@keyframes pop {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
