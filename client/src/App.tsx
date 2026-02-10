@@ -1,4 +1,5 @@
-import johnnyImg from "./assets/johnny.png";
+import johnnyImg from "./assets/johnny-bravo.png";
+
 
 export default function App() {
   return (
