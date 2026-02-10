@@ -1,7 +1,12 @@
+import { useState } from "react";
 import johnnyImg from "./assets/johnny-bravo.png";
 
 export default function App() {
-  return (
+  const [message, setMessage] = useState("");
+const [reply, setReply] = useState(
+  "Hey pretty mama! Or handsome dude! Ask me anything! Hah-huh!"
+);
+return (
     <>
       <header className="header">
         <div className="logo">
@@ -41,6 +46,44 @@ export default function App() {
           </div>
         </div>
       </section>
-    </>
+   <section className="ask">
+  <h2 className="ask-title">ASK JOHNNY!</h2>
+  <p className="ask-sub">I'm pretty, you're pretty. Let's talk!</p>
+
+  <div className="ask-box">
+    <div className="ask-image">
+      <img src={johnnyImg} alt="Johnny The Man" />
+      <span className="ask-caption">Johnny The Man</span>
+    </div>
+
+    <div className="ask-chat">
+      <div className="ask-message">
+        <strong>JOHNNY SAYS:</strong>
+        <p>{reply}</p>
+      </div>
+
+      <form
+        className="ask-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+
+          if (!message.trim()) return;
+
+          setReply(`Hah-huh! "${message}"? You're alright, baby 😎`);
+          setMessage("");
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Talk to the hair..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <button type="submit">➤</button>
+      </form>
+    </div>
+  </div>
+</section>
+ </>
   );
 }
