@@ -1,37 +1,43 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import johnnyImg from "./assets/johnny-bravo.png";
+import hahHuh from "./assets/hah-huh.mp3";
 
 export default function App() {
   const [message, setMessage] = useState("");
   const [reply, setReply] = useState(
-    "Hey pretty mama! Or handsome dude! Ask me anything. Hah-huh!"
+    "Hey pretty mama! Ask me anything. Hah-huh! 😎"
   );
 
-  const playSound = () => {
-    const audio = new Audio("/hah-huh.mp3");
-    audio.play();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const getJohnnyReply = async (text: string) => {
+    // 🔥 ВРЕМЕННЫЙ AI-СТАБ (позже подключим OpenAI)
+    const lower = text.toLowerCase();
+
+    if (lower.includes("how")) {
+      return "How am I? Looking good, feeling great, and flexing constantly. 💪😎";
+    }
+    if (lower.includes("love")) {
+      return "Easy there, mama. Johnny only loves one thing — Johnny. 😏";
+    }
+    if (lower.includes("hair")) {
+      return "This hair? Defies gravity AND logic, baby.";
+    }
+    return "Whoa mama! Say that again slower — Johnny was admiring himself.";
   };
 
-  const askJohnny = () => {
+  const sendMessage = async () => {
     if (!message.trim()) return;
 
-    const lower = message.toLowerCase();
-    let answer = "Hah! I'm too cool to answer that, baby 😎";
-
-    if (lower.includes("how are you")) {
-      answer =
-        "How am I? Looking good, feeling great, and flexing constantly 💪😎";
-    } else if (lower.includes("hello") || lower.includes("hi")) {
-      answer = "Whoa mama! Hello there 😎👉👉";
-    } else if (lower.includes("love")) {
-      answer = "Easy there, baby! Johnny Bravo loves everyone 😘";
-    } else if (lower.includes("who are you")) {
-      answer = "I'm Johnny Bravo. The hair. The muscles. The legend.";
-    }
-
-    setReply(`Johnny says: "${answer}"`);
+    const answer = await getJohnnyReply(message);
+    setReply(`Johnny says: ${answer}`);
     setMessage("");
-    playSound();
+
+    // 🔊 звук
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
   };
 
   return (
@@ -89,15 +95,17 @@ export default function App() {
 
             <div className="input-row">
               <input
-                placeholder="Talk to the hair..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && askJohnny()}
+                placeholder="Talk to the hair..."
+                onKeyDown={(e) => e.key === "Enter" && sendMessage()}
               />
-              <button onClick={askJohnny}>▶</button>
+              <button onClick={sendMessage}>▶</button>
             </div>
           </div>
         </div>
+
+        <audio ref={audioRef} src={hahHuh} preload="auto" />
       </section>
     </>
   );
