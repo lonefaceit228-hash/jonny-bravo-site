@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
 import johnnyImg from "./assets/johnny-bravo.png";
-import hahHuh from "./assets/hah-huh.mp3";
 
 export default function App() {
   const [message, setMessage] = useState("");
@@ -11,7 +10,6 @@ export default function App() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const getJohnnyReply = async (text: string) => {
-    // 🔥 ВРЕМЕННЫЙ AI-СТАБ (позже подключим OpenAI)
     const lower = text.toLowerCase();
 
     if (lower.includes("how")) {
@@ -23,6 +21,7 @@ export default function App() {
     if (lower.includes("hair")) {
       return "This hair? Defies gravity AND logic, baby.";
     }
+
     return "Whoa mama! Say that again slower — Johnny was admiring himself.";
   };
 
@@ -33,7 +32,6 @@ export default function App() {
     setReply(`Johnny says: ${answer}`);
     setMessage("");
 
-    // 🔊 звук
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
       audioRef.current.play();
@@ -105,7 +103,8 @@ export default function App() {
           </div>
         </div>
 
-        <audio ref={audioRef} src={hahHuh} preload="auto" />
+        {/* 🔊 звук из public */}
+        <audio ref={audioRef} src="/hah-huh.mp3" preload="auto" />
       </section>
     </>
   );
