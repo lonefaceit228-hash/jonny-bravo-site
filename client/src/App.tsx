@@ -12,7 +12,7 @@ export default function App() {
   const aboutRef = useRef<HTMLDivElement | null>(null);
   const askRef = useRef<HTMLDivElement | null>(null);
 
-  // 🎬 Johnny entrance animation
+  // 🎬 Johnny entrance (1 раз)
   useEffect(() => {
     setTimeout(() => setShowJohnny(true), 300);
   }, []);
@@ -105,6 +105,7 @@ export default function App() {
           </div>
         </div>
 
+        {/* 👇 ВАЖНО: класс show остаётся */}
         <div className={`hero-images ${showJohnny ? "show" : ""}`}>
           <img src="/johnny-hero.png" className="hero-img" />
           <img src="/johnny-coin.png" className="coin-img" />
@@ -117,31 +118,15 @@ export default function App() {
         <div className="about-box">
           <p>
             Johnny Bravo is not just a man — he’s a lifestyle. A self-made legend
-            with gravity-defying hair, sunglasses worn indoors, and confidence
-            measured in flexes per second.
-          </p>
-          <p>
-            Born cool. Raised cooler. Johnny doesn’t chase trends — trends chase
-            Johnny.
+            with gravity-defying hair and unstoppable confidence.
           </p>
           <p className="about-quote">“Man, I’m pretty.” — Johnny Bravo</p>
-        </div>
-      </section>
-
-      {/* LIFESTYLE */}
-      <section className="lifestyle">
-        <h2>THE JOHNNY LIFESTYLE</h2>
-        <div className="cards">
-          <div className="card">THE HAIR<br /><span>Defies gravity.</span></div>
-          <div className="card dark">THE SHADES<br /><span>Sun never sets.</span></div>
-          <div className="card">THE MOVES<br /><span>I don’t walk. I strut.</span></div>
         </div>
       </section>
 
       {/* ASK */}
       <section className="ask" ref={askRef}>
         <h2>ASK JOHNNY!</h2>
-        <p>I’m pretty, you’re pretty. Let’s talk!</p>
 
         <div className="chat-box">
           <img src="/johnny-hero.png" />
