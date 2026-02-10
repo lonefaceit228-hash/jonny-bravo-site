@@ -29,8 +29,7 @@ export default function App() {
   const sendMessage = () => {
     if (!message.trim()) return;
 
-    const answer = getJohnnyReply(message);
-    setReply(`Johnny says: ${answer}`);
+    setReply(`Johnny says: ${getJohnnyReply(message)}`);
     setMessage("");
 
     if (audioRef.current) {
@@ -61,10 +60,14 @@ export default function App() {
       {/* HERO */}
       <section className="hero">
         <div className="hero-text">
-          <h1>WHOA<br />MAMA!</h1>
+          <h1>
+            WHOA
+            <br />
+            MAMA!
+          </h1>
 
           <div className="tagline">
-            The one and only site for the man, the myth, the pompadour!
+            THE ONE AND ONLY SITE FOR THE MAN, THE MYTH, THE POMPADOUR!
           </div>
 
           <div className="hero-buttons">
@@ -75,8 +78,17 @@ export default function App() {
         </div>
 
         <div className="hero-images">
-          <img src="/johnny-main.png" alt="Johnny Bravo" className="hero-img" />
-          <img src="/johnny-coin.png" alt="Johnny Coin" className="coin-img" />
+          {/* 🔥 ВАЖНО: имена совпадают с public */}
+          <img
+            src="/johnny-hero.png"
+            alt="Johnny Bravo"
+            className="hero-img"
+          />
+          <img
+            src="/johnny-coin.png"
+            alt="Johnny Coin"
+            className="coin-img"
+          />
         </div>
       </section>
 
@@ -86,14 +98,14 @@ export default function App() {
 
         <div className="about-box">
           <p>
-            Johnny Bravo is not just a man — he’s a lifestyle.  
-            A self-made legend with gravity-defying hair, sunglasses worn indoors,
-            and confidence measured in flexes per second.
+            Johnny Bravo is not just a man — he’s a lifestyle. A self-made legend
+            with gravity-defying hair, sunglasses worn indoors, and confidence
+            measured in flexes per second.
           </p>
 
           <p>
-            Born cool. Raised cooler.  
-            Johnny doesn’t chase trends — trends chase Johnny.
+            Born cool. Raised cooler. Johnny doesn’t chase trends — trends chase
+            Johnny.
           </p>
 
           <p className="about-quote">
@@ -120,8 +132,8 @@ export default function App() {
           <div className="card">
             <h3>THE MOVES</h3>
             <p>
-              I don’t walk — I strut.  
-              Confidence first, muscles second, rhythm always.
+              I don’t walk — I strut. Confidence first, muscles second, rhythm
+              always.
             </p>
           </div>
         </div>
@@ -138,7 +150,7 @@ export default function App() {
         <p>I’m pretty, you’re pretty. Let’s talk!</p>
 
         <div className="chat-box">
-          <img src="/johnny-main.png" alt="Johnny" />
+          <img src="/johnny-hero.png" alt="Johnny" />
 
           <div className="chat">
             <div className="reply">{reply}</div>
@@ -154,7 +166,8 @@ export default function App() {
           </div>
         </div>
 
-        <audio ref={audioRef} src="/johnny.mp3" />
+        {/* 🔊 звук */}
+        <audio ref={audioRef} src="/hmph.mp3" />
       </section>
     </>
   );
