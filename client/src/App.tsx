@@ -3,11 +3,22 @@ import johnnyImg from "./assets/johnny-bravo.png";
 
 export default function App() {
   const [message, setMessage] = useState("");
-const [reply, setReply] = useState(
-  "Hey pretty mama! Or handsome dude! Ask me anything! Hah-huh!"
-);
-return (
+  const [reply, setReply] = useState(
+    "Hey pretty mama! Or handsome dude! Ask me anything! Hah-huh!"
+  );
+
+  const handleSend = () => {
+    if (!message.trim()) return;
+
+    setReply(
+      `Johnny says: "${message}"? Heh. Nice one, baby! 💪😎`
+    );
+    setMessage("");
+  };
+
+  return (
     <>
+      {/* HEADER */}
       <header className="header">
         <div className="logo">
           <span className="logo-box">JB</span>
@@ -20,10 +31,11 @@ return (
           rel="noopener noreferrer"
           className="community-btn"
         >
-          ✕ COMMUNITY ↗
+          X COMMUNITY ↗
         </a>
       </header>
 
+      {/* HERO */}
       <section className="hero">
         <div className="hero-left">
           <h1 className="hero-title">
@@ -46,44 +58,54 @@ return (
           </div>
         </div>
       </section>
-   <section className="ask">
-  <h2 className="ask-title">ASK JOHNNY!</h2>
-  <p className="ask-sub">I'm pretty, you're pretty. Let's talk!</p>
 
-  <div className="ask-box">
-    <div className="ask-image">
-      <img src={johnnyImg} alt="Johnny The Man" />
-      <span className="ask-caption">Johnny The Man</span>
-    </div>
+      {/* LIFESTYLE */}
+      <section className="lifestyle">
+        <h2>THE JOHNNY LIFESTYLE</h2>
 
-    <div className="ask-chat">
-      <div className="ask-message">
-        <strong>JOHNNY SAYS:</strong>
-        <p>{reply}</p>
-      </div>
+        <div className="cards">
+          <div className="card">
+            <h3>THE HAIR</h3>
+            <p>It defies gravity, baby. Just like my charm.</p>
+          </div>
 
-      <form
-        className="ask-form"
-        onSubmit={(e) => {
-          e.preventDefault();
+          <div className="card card-dark">
+            <h3>THE SHADES</h3>
+            <p>I wear them indoors because the sun never sets on cool.</p>
+          </div>
 
-          if (!message.trim()) return;
+          <div className="card">
+            <h3>THE MOVES</h3>
+            <p>Certified disco ninja since 1997.</p>
+          </div>
+        </div>
+      </section>
 
-          setReply(`Hah-huh! "${message}"? You're alright, baby 😎`);
-          setMessage("");
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Talk to the hair..."
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <button type="submit">➤</button>
-      </form>
-    </div>
-  </div>
-</section>
- </>
+      {/* ASK JOHNNY */}
+      <section className="ask">
+        <h2>ASK JOHNNY!</h2>
+        <p>I'm pretty, you're pretty. Let's talk!</p>
+
+        <div className="chat">
+          <div className="chat-image">
+            <img src={johnnyImg} alt="Johnny" />
+          </div>
+
+          <div className="chat-box">
+            <div className="bubble">{reply}</div>
+
+            <div className="input-row">
+              <input
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Talk to the hair..."
+              />
+              <button onClick={handleSend}>➤</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
+
