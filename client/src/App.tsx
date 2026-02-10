@@ -50,45 +50,39 @@ export default function App() {
       <header className="header">
         <div className="logo">
           <span className="logo-box">JB</span>
-          <span>Johnny Bravo</span>
+          <span className="logo-text">Johnny Bravo</span>
         </div>
-        <a className="community-btn" href="#">
-          ✕ COMMUNITY ↗
+
+        <a
+          href="https://x.com/i/communities/2020974893467099418"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="community-btn"
+        >
+          X COMMUNITY ↗
         </a>
       </header>
 
       {/* HERO */}
       <section className="hero">
         <div className="hero-text">
-          <h1>
-            WHOA
-            <br />
-            MAMA!
-          </h1>
+          <h1>WHOA<br />MAMA!</h1>
 
-          <div className="tagline">
+          <p className="hero-sub">
             The one and only site for the man, the myth, the pompadour!
-          </div>
+          </p>
 
-          <div className="hero-buttons">
-            <button className="btn primary">TALK TO ME, BABY!</button>
-            <button className="btn" onClick={scrollToLifestyle}>
+          <div className="hero-actions">
+            <button className="primary-btn">TALK TO ME, BABY!</button>
+            <button className="secondary-btn" onClick={scrollToLifestyle}>
               CHECK THE PECS
             </button>
           </div>
         </div>
 
         <div className="hero-images">
-          <img
-            src="/johnny-hero.png"
-            alt="Johnny Bravo"
-            className="hero-main"
-          />
-          <img
-            src="/johnny-coin.png"
-            alt="Johnny Coin"
-            className="hero-coin"
-          />
+          <img src="/johnny-hero.png" className="hero-img" />
+          <img src="/johnny-coin.png" className="coin-img" />
         </div>
       </section>
 
@@ -103,7 +97,7 @@ export default function App() {
             <p>It defies gravity, baby. Just like my charm.</p>
           </div>
 
-          <div className="card dark">
+          <div className="card card-dark">
             ⭐
             <h3>THE SHADES</h3>
             <p>I wear them indoors because the sun never sets on cool.</p>
@@ -113,16 +107,16 @@ export default function App() {
             ⚡
             <h3>THE MOVES</h3>
             <p>
-              I don’t walk — I strut. Every step is a power move. Confidence
-              first, muscles second, rhythm always.
+              I don’t walk — I strut. Every step is a power move.
+              Confidence first, muscles second, rhythm always.
             </p>
           </div>
         </div>
       </section>
 
-      {/* TICKER */}
-      <div className="ticker">
-        ★ DO THE MONKEY ★ MAN I’M PRETTY ★ HUH! HAH! HUH! ★ DO THE MONKEY ★
+      {/* MARQUEE */}
+      <div className="marquee">
+        ★ DO THE MONKEY ★ MAN I'M PRETTY ★ HUH! HAH! HUH! ★ DO THE MONKEY ★
       </div>
 
       {/* ASK JOHNNY */}
@@ -130,10 +124,10 @@ export default function App() {
         <h2>ASK JOHNNY!</h2>
         <p className="ask-sub">I'm pretty, you're pretty. Let's talk!</p>
 
-        <div className="chat-box">
-          <img src="/johnny-hero.png" alt="Johnny" />
+        <div className="chat">
+          <img src="/johnny-hero.png" className="chat-img" />
 
-          <div className="chat">
+          <div className="chat-box">
             <div className="reply">{reply}</div>
 
             <div className="input-row">
@@ -148,7 +142,7 @@ export default function App() {
         </div>
       </section>
 
-      <audio ref={audioRef} src="/hmph.mp3" />
+      <audio ref={audioRef} src="/hmph.mp3" preload="auto" />
     </>
   );
 }
