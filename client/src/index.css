@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Carter+One&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Johnny Bravo Palette */
+  --bravo-yellow: 51 100% 50%; /* #FFD700 */
+  --bravo-black: 0 0% 0%;      /* #000000 */
+  --bravo-blue: 240 100% 50%;  /* #0000FF - Classic 90s blue */
+  --bravo-pink: 320 100% 50%;  /* Hot pink accent */
+  
+  --font-display: 'Bangers', cursive;
+  --font-body: 'Comic Neue', cursive;
+  --font-comic: 'Permanent Marker', cursive;
+
+  --background: 51 100% 50%;
+  --foreground: 0 0% 0%;
+  
+  --primary: 0 0% 0%;
+  --primary-foreground: 51 100% 50%;
+  
+  --secondary: 240 100% 50%;
+  --secondary-foreground: 0 0% 100%;
+  
+  --muted: 51 80% 60%;
+  --muted-foreground: 0 0% 20%;
+  
+  --accent: 320 100% 50%;
+  --accent-foreground: 0 0% 100%;
+  
+  --destructive: 0 100% 50%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --border: 0 0% 0%;
+  --input: 0 0% 100%;
+  --ring: 0 0% 0%;
+  
+  --radius: 0px; /* Sharp corners for that comic book feel */
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-black selection:text-yellow-400;
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-normal tracking-wide uppercase text-black;
+    text-shadow: 3px 3px 0px rgba(255,255,255,0.5);
+  }
+}
+
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+  }
+  .text-shadow-md {
+    text-shadow: 4px 4px 0px rgba(0,0,0,1);
+  }
+  .text-shadow-white {
+    text-shadow: 4px 4px 0px rgba(255,255,255,1);
+  }
+  
+  .comic-border {
+    border: 4px solid black;
+    box-shadow: 8px 8px 0px rgba(0,0,0,1);
+  }
+  
+  .comic-box {
+    @apply border-4 border-black bg-white p-6 shadow-[8px_8px_0px_rgba(0,0,0,1)];
+  }
+
+  .halftone-pattern {
+    background-image: radial-gradient(circle, #000 1px, transparent 1.5px);
+    background-size: 8px 8px;
+    opacity: 0.1;
+  }
+  
+  .zig-zag-top {
+    position: relative;
+  }
+  .zig-zag-top::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(135deg, #000 10px, transparent 0) 0 10px,
+                linear-gradient(225deg, #000 10px, transparent 0) 0 10px;
+    background-color: transparent;
+    background-position: top left;
+    background-repeat: repeat-x;
+    background-size: 20px 20px;
+  }
+}
