@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import "./index.css";
 
 export default function App() {
@@ -6,44 +6,43 @@ export default function App() {
   const [reply, setReply] = useState(
     "Hey pretty mama! Ask me anything. Hah-huh! 😎"
   );
+  const [showJohnny, setShowJohnny] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const aboutRef = useRef<HTMLDivElement | null>(null);
   const askRef = useRef<HTMLDivElement | null>(null);
+
+  // 🎬 Johnny entrance animation
+  useEffect(() => {
+    setTimeout(() => setShowJohnny(true), 300);
+  }, []);
 
   // 💥 COMIC BURST
   const spawnBurst = (text: string) => {
     const burst = document.createElement("div");
     burst.className = "comic-burst";
     burst.innerText = text;
-
-    burst.style.left = `${50 + (Math.random() * 20 - 10)}%`;
-    burst.style.top = `${40 + (Math.random() * 20 - 10)}%`;
-
+    burst.style.left = `${50 + (Math.random() * 30 - 15)}%`;
+    burst.style.top = `${40 + (Math.random() * 30 - 15)}%`;
     document.body.appendChild(burst);
     setTimeout(() => burst.remove(), 900);
   };
 
   const getJohnnyReply = (text: string) => {
     const t = text.toLowerCase();
-    if (t.includes("how")) return "Looking good, feeling great, flexing always 💪";
-    if (t.includes("hair")) return "This hair defies gravity AND logic.";
-    if (t.includes("love")) return "Johnny loves one thing — Johnny.";
-    if (t.includes("coin")) return "Johnny Coin? Profitable AND handsome.";
-    if (t.includes("pec")) return "Careful baby… these pecs have their own orbit.";
+    if (t.includes("how")) return "Looking good. Feeling great. Flexing always 💪";
+    if (t.includes("hair")) return "This hair defies gravity AND science.";
+    if (t.includes("love")) return "Johnny loves Johnny.";
+    if (t.includes("coin")) return "Johnny Coin? Handsome AND profitable.";
+    if (t.includes("pec")) return "Careful, baby… these pecs bend time.";
     return "Whoa mama! Say that again slower.";
   };
 
   const sendMessage = () => {
     if (!message.trim()) return;
-    const answer = getJohnnyReply(message);
-    setReply(`Johnny says: ${answer}`);
+    setReply(`Johnny says: ${getJohnnyReply(message)}`);
     setMessage("");
-
-    if (audioRef.current) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play();
-    }
+    audioRef.current?.play();
     spawnBurst("POW!");
   };
 
@@ -87,11 +86,8 @@ export default function App() {
               className="btn"
               onClick={() => {
                 spawnBurst("POW!");
-                if (audioRef.current) {
-                  audioRef.current.currentTime = 0;
-                  audioRef.current.play();
-                }
-                alert("💪 WHOA MAMA! THESE PECS ARE ILLEGAL 💪");
+                audioRef.current?.play();
+                alert("💪 WHOA MAMA! THESE PECS ARE DANGEROUS 💪");
               }}
             >
               CHECK THE PECS
@@ -109,7 +105,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className="hero-images">
+        <div className={`hero-images ${showJohnny ? "show" : ""}`}>
           <img src="/johnny-hero.png" className="hero-img" />
           <img src="/johnny-coin.png" className="coin-img" />
         </div>
