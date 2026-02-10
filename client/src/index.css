@@ -1,31 +1,19 @@
-/* RESET */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
-  font-family: "Arial Black", Impact, sans-serif;
-  background: #000;
+body {
+  margin: 0;
+  font-family: Impact, Arial, sans-serif;
+  background: #ffd900;
   color: #000;
 }
 
-/* ====== GLOBAL BACKGROUND ====== */
-body {
-  background-image: url("/johnny-background.png");
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+.page {
+  overflow-x: hidden;
 }
 
-/* overlay чтобы текст читался */
-.page-overlay {
-  background: rgba(255, 216, 0, 0.88);
-}
-
-/* ====== HEADER ====== */
+/* HEADER */
 .header {
   display: flex;
   justify-content: space-between;
@@ -38,90 +26,160 @@ body {
   font-weight: 900;
 }
 
+.logo span {
+  margin-left: 8px;
+}
+
 .x-btn {
   border: 3px solid #000;
   padding: 8px 14px;
   text-decoration: none;
   color: #000;
-  background: #FFD800;
+  font-weight: bold;
 }
 
-/* ====== HERO ====== */
+/* HERO */
 .hero {
-  display: grid;
-  grid-template-columns: 1fr 520px;
-  gap: 40px;
-  padding: 80px;
-}
-
-.hero h1 {
-  font-size: 72px;
-  line-height: 0.9;
-}
-
-.hero p {
-  margin: 20px 0;
-  max-width: 420px;
-}
-
-.hero-buttons button {
-  margin-right: 12px;
-  padding: 14px 20px;
-  border: 3px solid #000;
-  font-weight: 900;
-  cursor: pointer;
-}
-
-.primary {
-  background: #000;
-  color: #FFD800;
-}
-
-.secondary {
-  background: #fff;
-}
-
-/* ====== JOHNNY IMAGE ====== */
-.johnny-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 80px 120px;
   position: relative;
 }
 
-.johnny-hero {
-  width: 100%;
-  transform: translateX(120%);
-  opacity: 0;
+.hero-text h1 {
+  font-size: 96px;
+  margin: 0;
+  line-height: 0.95;
+}
+
+.subtitle {
+  background: rgba(0,0,0,0.1);
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+.buttons button {
+  margin-right: 12px;
+  padding: 14px 22px;
+  border: 3px solid #000;
+  background: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.buttons button:first-child {
+  background: #000;
+  color: #ffd900;
+}
+
+/* HERO IMAGE */
+.hero-image {
+  position: relative;
+}
+
+.hero-image img {
+  max-width: 420px;
 }
 
 .johnny-enter {
-  animation: slideIn 0.9s ease-out forwards;
+  animation: slideIn 1s ease-out forwards;
 }
 
 @keyframes slideIn {
+  from {
+    transform: translateX(300px);
+    opacity: 0;
+  }
   to {
     transform: translateX(0);
     opacity: 1;
   }
 }
 
-/* ====== COMIC BURST ====== */
-.burst {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  font-size: 96px;
-  font-weight: 900;
-  color: red;
-  text-shadow: 6px 6px #000;
-  z-index: 999;
+.coin {
+  position: absolute;
+  bottom: -40px;
+  left: -40px;
+  width: 140px;
+  transform: rotate(-10deg);
 }
 
-.burst.show {
+/* BURST */
+.burst {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  font-size: 48px;
+  font-weight: 900;
   animation: pop 0.6s ease-out;
 }
 
 @keyframes pop {
-  0% { transform: translate(-50%, -50%) scale(0); }
-  60% { transform: translate(-50%, -50%) scale(1.2); }
-  100% { transform: translate(-50%, -50%) scale(1); }
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ABOUT */
+.about {
+  background: #fff;
+  padding: 120px 40px;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 48px;
+}
+
+.about-box {
+  background: #ffd900;
+  border: 4px solid #000;
+  padding: 40px;
+  max-width: 700px;
+  margin: 40px auto;
+  font-size: 20px;
+}
+
+.quote {
+  font-style: italic;
+  margin-top: 20px;
+}
+
+/* LIFESTYLE */
+.lifestyle {
+  background: #fff;
+  padding: 100px 40px;
+  text-align: center;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.card {
+  border: 4px solid #000;
+  padding: 30px;
+  width: 260px;
+}
+
+.card.dark {
+  background: #000;
+  color: #fff;
+}
+
+/* ASK */
+.ask {
+  background: #ffd900;
+  padding: 100px 40px;
+  text-align: center;
+}
+
+.ask img {
+  max-width: 260px;
+  margin-top: 20px;
 }
