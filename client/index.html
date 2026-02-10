@@ -1,294 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Johnny Bravo</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" href="/favicon.png">
+  <meta charset="UTF-8" />
+  <title>Johnny Bravo</title>
 
-<!-- COMIC FONT -->
-<link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:'Bangers', cursive;
-  background:#FFD800;
-  color:#000;
-}
+  <!-- Comic font -->
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
 
-/* HEADER */
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:16px 32px;
-  border-bottom:4px solid #000;
-}
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.logo span{
-  background:#000;
-  color:#FFD800;
-  padding:6px 10px;
-}
-.x-btn{
-  border:3px solid #000;
-  padding:10px 18px;
-  text-decoration:none;
-  color:#000;
-}
-
-/* HERO */
-.hero{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  padding:80px 60px;
-  align-items:center;
-}
-.hero h1{
-  font-size:96px;
-  line-height:0.9;
-}
-.tagline{
-  background:#E6C200;
-  padding:12px;
-  margin:20px 0;
-  max-width:420px;
-}
-.btns{
-  display:flex;
-  gap:16px;
-}
-.btn{
-  border:3px solid #000;
-  padding:14px 22px;
-  cursor:pointer;
-  background:#fff;
-}
-.btn.primary{
-  background:#000;
-  color:#FFD800;
-}
-
-/* JOHNNY IMAGE + ANIMATION */
-.johnny-wrap{
-  position:relative;
-}
-.johnny{
-  width:420px;
-  transform:translateX(120%);
-  animation:enterJohnny 1.2s ease-out forwards;
-}
-@keyframes enterJohnny{
-  to{transform:translateX(0)}
-}
-.coin{
-  width:140px;
-  position:absolute;
-  bottom:-40px;
-  left:-40px;
-  transform:rotate(-10deg);
-}
-
-/* COMIC BURST */
-.burst{
-  position:absolute;
-  font-size:48px;
-  color:red;
-  animation:burst 0.6s ease-out forwards;
-  pointer-events:none;
-}
-@keyframes burst{
-  from{transform:scale(0);opacity:1}
-  to{transform:scale(2);opacity:0}
-}
-
-/* SECTIONS */
-section{
-  padding:120px 60px;
-  background:#fff;
-}
-section.yellow{
-  background:#FFD800;
-}
-h2{
-  text-align:center;
-  font-size:64px;
-  margin-bottom:40px;
-}
-
-/* ABOUT */
-.about-box{
-  max-width:900px;
-  margin:0 auto;
-  background:#FFD800;
-  border:5px solid #000;
-  padding:50px;
-  text-align:center;
-  font-size:28px;
-  line-height:1.4;
-}
-
-/* HOW TO BUY */
-.how-box{
-  max-width:900px;
-  margin:0 auto;
-  background:#fff;
-  border-radius:20px;
-  padding:40px;
-}
-.buy-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-.buy-item{
-  border:3px solid #000;
-  padding:20px;
-  text-align:center;
-}
-.copy-btn{
-  margin-top:30px;
-  display:block;
-  background:#FFD800;
-  border:3px solid #000;
-  padding:14px;
-  cursor:pointer;
-  font-size:20px;
-}
-
-/* ASK */
-.ask-box{
-  display:flex;
-  gap:40px;
-  align-items:center;
-  justify-content:center;
-}
-.ask-box img{width:220px}
-.chat{
-  border:4px solid #000;
-  padding:20px;
-  width:340px;
-}
-.chat input{
-  width:100%;
-  margin-top:10px;
-  padding:10px;
-}
-
-/* FOOTER */
-footer{
-  background:#000;
-  color:#fff;
-  text-align:center;
-  padding:16px;
-  font-size:20px;
-}
-</style>
+  <link rel="icon" href="/favicon.png" />
+  <link rel="stylesheet" href="./index.css" />
 </head>
-
 <body>
 
-<header>
-  <div class="logo">
-    <span>JB</span> Johnny Bravo
-  </div>
-  <a class="x-btn" href="https://x.com" target="_blank">X COMMUNITY ↗</a>
-</header>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="logo">JB <span>Johnny Bravo</span></div>
+    <a
+      class="x-btn"
+      href="https://x.com/i/communities/2020974893467099418"
+      target="_blank"
+      rel="noreferrer"
+    >
+      X COMMUNITY ↗
+    </a>
+  </header>
 
-<!-- HERO -->
-<div class="hero" id="top">
-  <div>
-    <h1>WHOA<br>MAMA!</h1>
-    <div class="tagline">
-      The one and only site for the man, the myth, the pompadour!
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-left">
+      <h1>WHOA<br/>MAMA!</h1>
+
+      <p class="tagline">
+        The one and only site for the man, the myth, the pompadour!
+      </p>
+
+      <div class="buttons">
+        <button onclick="scrollToAsk()">TALK TO ME, BABY!</button>
+        <button onclick="scrollToLifestyle()">CHECK THE PECS</button>
+        <button onclick="scrollToAbout()">ABOUT</button>
+      </div>
     </div>
-    <div class="btns">
-      <button class="btn primary" onclick="scrollToId('ask')">TALK TO ME, BABY!</button>
-      <button class="btn" onclick="scrollToId('buy')">CHECK THE PECS</button>
-      <button class="btn" onclick="scrollToId('about')">ABOUT</button>
+
+    <div class="hero-right">
+      <img
+        src="/johnny-hero.png"
+        alt="Johnny Bravo"
+        class="johnny johnny-enter"
+        id="johnnyHero"
+      />
+
+      <img
+        src="/johnny-coin.png"
+        class="coin"
+        alt="Johnny Coin"
+      />
     </div>
-  </div>
+  </section>
 
-  <div class="johnny-wrap">
-    <img src="/johnny-hero.png" class="johnny" id="johnny">
-    <img src="/johnny-coin.png" class="coin">
-  </div>
-</div>
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <h2>ABOUT JOHNNY</h2>
 
-<!-- ABOUT -->
-<section id="about">
-  <h2>ABOUT JOHNNY</h2>
-  <div class="about-box">
-    Johnny Bravo is not just a man — he’s a lifestyle.<br>
-    A self-made legend with gravity-defying hair and unstoppable confidence.
-    <br><br>
-    “MAN, I’M PRETTY.” — Johnny Bravo
-  </div>
-</section>
+    <div class="about-box">
+      <p>
+        Johnny Bravo is not just a man — he’s a lifestyle.
+        A self-made legend with gravity-defying hair and
+        unstoppable confidence.
+      </p>
 
-<!-- HOW TO BUY -->
-<section class="yellow" id="buy">
-  <h2>HOW TO BUY</h2>
-  <div class="how-box">
-    <div class="buy-grid">
-      <div class="buy-item">Solana</div>
-      <div class="buy-item">Raydium</div>
-      <div class="buy-item">DEXTools</div>
-      <div class="buy-item">DEXScreener</div>
-      <div class="buy-item">DEXView</div>
-      <div class="buy-item">Jupiter</div>
+      <p class="quote">
+        “Man, I’m pretty.” — Johnny Bravo
+      </p>
     </div>
-    <button class="copy-btn" onclick="copyContract()">📋 COPY CONTRACT</button>
-  </div>
-</section>
+  </section>
 
-<!-- ASK -->
-<section class="yellow" id="ask">
-  <h2>ASK JOHNNY!</h2>
-  <div class="ask-box">
-    <img src="/johnny-hero.png">
-    <div class="chat">
-      Hey pretty mama! Ask me anything. Hah-huh! 😎
-      <input placeholder="Talk to the hair...">
+  <!-- LIFESTYLE -->
+  <section class="lifestyle" id="lifestyle">
+    <h2>THE JOHNNY LIFESTYLE</h2>
+
+    <div class="cards">
+      <div class="card">THE HAIR<br/><span>It defies gravity, baby.</span></div>
+      <div class="card dark">THE SHADES<br/><span>The sun never sets on cool.</span></div>
+      <div class="card">THE MOVES<br/><span>I don’t walk — I strut.</span></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-★ DO THE MONKEY ★ MAN I’M PRETTY ★ HUH! HAH! ★
-</footer>
+  <!-- HOW TO BUY -->
+  <section class="how">
+    <h2>HOW TO BUY</h2>
 
-<audio id="hmph" src="/hmph.mp3"></audio>
+    <div class="how-box">
+      <div class="how-grid">
+        <div>Solana</div>
+        <div>Raydium</div>
+        <div>DEXTools</div>
+        <div>DEXScreener</div>
+        <div>DEXView</div>
+        <div>Jupiter</div>
+      </div>
 
-<script>
-function scrollToId(id){
-  document.getElementById(id).scrollIntoView({behavior:'smooth'});
-  comicBurst();
-}
+      <button class="copy-btn" onclick="copyContract()">
+        📋 COPY CONTRACT
+      </button>
+    </div>
+  </section>
 
-function comicBurst(){
-  const words=["POW!","BAM!","WOW!"];
-  const b=document.createElement("div");
-  b.className="burst";
-  b.innerText=words[Math.floor(Math.random()*words.length)];
-  b.style.left=Math.random()*window.innerWidth+"px";
-  b.style.top=Math.random()*window.innerHeight+"px";
-  document.body.appendChild(b);
-  document.getElementById("hmph").play();
-  setTimeout(()=>b.remove(),600);
-}
+  <!-- ASK -->
+  <section class="ask" id="ask">
+    <h2>ASK JOHNNY!</h2>
 
-function copyContract(){
-  navigator.clipboard.writeText("PASTE_YOUR_CONTRACT_HERE");
-  alert("Contract copied!");
-}
-</script>
+    <div class="ask-box">
+      <img src="/johnny-hero.png" alt="Johnny" />
 
+      <div class="chat">
+        <div class="bubble">
+          Hey pretty mama! Ask me anything. Hah-huh! 😎
+        </div>
+
+        <div class="input-row">
+          <input placeholder="Talk to the hair..." />
+          <button onclick="comicBurst(event)">▶</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="./index.js"></script>
 </body>
 </html>
