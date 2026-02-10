@@ -1,5 +1,5 @@
-import { useState, useRef } from "react";
-import johnnyImg from "./assets/johnny-bravo.png";
+import { useRef, useState } from "react";
+import "./index.css";
 
 export default function App() {
   const [message, setMessage] = useState("");
@@ -7,6 +7,7 @@ export default function App() {
     "Hey pretty mama! Ask me anything. Hah-huh! 😎"
   );
 
+  // 🔊 audio from /public
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const getJohnnyReply = async (text: string) => {
@@ -15,11 +16,17 @@ export default function App() {
     if (lower.includes("how")) {
       return "How am I? Looking good, feeling great, and flexing constantly. 💪😎";
     }
+
     if (lower.includes("love")) {
-      return "Easy there, mama. Johnny only loves one thing — Johnny. 😏";
+      return "Easy there, mama. Johnny only loves one thing — Johnny. 😌";
     }
+
     if (lower.includes("hair")) {
       return "This hair? Defies gravity AND logic, baby.";
+    }
+
+    if (lower.includes("hello") || lower.includes("hi")) {
+      return "Hey there, good lookin’. Johnny noticed you first. 😉";
     }
 
     return "Whoa mama! Say that again slower — Johnny was admiring himself.";
@@ -32,14 +39,19 @@ export default function App() {
     setReply(`Johnny says: ${answer}`);
     setMessage("");
 
+    // 🔊 play sound ONLY after user action
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
-      audioRef.current.play();
+      audioRef.current.volume = 0.6;
+      audioRef.current.play().catch(() => {});
     }
   };
 
   return (
     <>
+      {/* hidden audio */}
+      <audio ref={audioRef} src="/hmph.mp3" preload="auto" />
+
       <header className="header">
         <div className="logo">
           <span className="logo-box">JB</span>
@@ -47,10 +59,9 @@ export default function App() {
         </div>
 
         <a
-          href="https://x.com/i/communities/2020974893467099418"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#"
           className="community-btn"
+          onClick={(e) => e.preventDefault()}
         >
           ✕ COMMUNITY ↗
         </a>
@@ -74,7 +85,7 @@ export default function App() {
 
         <div className="hero-right">
           <div className="image-frame">
-            <img src={johnnyImg} alt="Johnny Bravo" />
+            <img src="/johnny.png" alt="Johnny Bravo" />
           </div>
         </div>
       </section>
@@ -84,10 +95,6 @@ export default function App() {
         <p className="ask-sub">I'm pretty, you're pretty. Let's talk!</p>
 
         <div className="chat">
-          <div className="chat-image">
-            <img src={johnnyImg} alt="Johnny" />
-          </div>
-
           <div className="chat-box">
             <div className="bubble">{reply}</div>
 
@@ -102,9 +109,6 @@ export default function App() {
             </div>
           </div>
         </div>
-
-        {/* 🔊 звук из public */}
-        <audio ref={audioRef} src="/hah-huh.mp3" preload="auto" />
       </section>
     </>
   );
