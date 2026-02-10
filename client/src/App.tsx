@@ -51,34 +51,37 @@ export default function App() {
           <span className="logo-box">JB</span>
           <span className="logo-text">Johnny Bravo</span>
         </div>
-
-        <a
-          className="community-btn"
-          href="https://x.com/i/communities/2020974893467099418"
-          target="_blank"
-        >
-          ✕ COMMUNITY ↗
-        </a>
+        <button className="community-btn">✕ COMMUNITY ↗</button>
       </header>
 
       {/* HERO */}
       <section className="hero">
-        <div className="hero-text">
-          <h1>WHOA<br />MAMA!</h1>
+        <div className="hero-left">
+          <h1>
+            WHOA <br /> MAMA!
+          </h1>
 
-          <p className="tagline">
+          <p className="hero-sub">
             The one and only site for the man, the myth, the pompadour!
           </p>
 
           <div className="hero-buttons">
-            <button onClick={() => window.scrollTo({ top: 900, behavior: "smooth" })}>
-              TALK TO ME, BABY!
+            <button className="btn primary">TALK TO ME, BABY!</button>
+
+            <button
+              className="btn secondary"
+              onClick={() =>
+                document
+                  .getElementById("lifestyle")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              CHECK THE PECS
             </button>
-            <button className="outline">CHECK THE PECS</button>
           </div>
         </div>
 
-        <div className="hero-images">
+        <div className="hero-right">
           <img
             src="/johnny-hero.png"
             alt="Johnny Bravo"
@@ -92,10 +95,10 @@ export default function App() {
         </div>
       </section>
 
-      {/* CHAT */}
-      <section className="chat">
+      {/* ASK JOHNNY */}
+      <section className="ask">
         <h2>ASK JOHNNY!</h2>
-        <p className="subtitle">I'm pretty, you're pretty. Let's talk!</p>
+        <p className="ask-sub">I'm pretty, you're pretty. Let's talk!</p>
 
         <div className="chat-box">
           <div className="reply">{reply}</div>
@@ -108,6 +111,38 @@ export default function App() {
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             />
             <button onClick={sendMessage}>▶</button>
+          </div>
+        </div>
+      </section>
+
+      {/* LIFESTYLE */}
+      <section id="lifestyle" className="lifestyle">
+        <h2 className="section-title">THE JOHNNY LIFESTYLE</h2>
+
+        <div className="cards">
+          <div className="card">
+            <div className="icon">✨</div>
+            <h3>THE HAIR</h3>
+            <p>
+              It defies gravity, baby. Just like my charm.
+            </p>
+          </div>
+
+          <div className="card dark">
+            <div className="icon">⭐</div>
+            <h3>THE SHADES</h3>
+            <p>
+              I wear them indoors because the sun never sets on cool.
+            </p>
+          </div>
+
+          <div className="card">
+            <div className="icon">⚡</div>
+            <h3>THE MOVES</h3>
+            <p>
+              I don’t walk — I strut. Every step is a power move.
+              Confidence first, muscles second, rhythm always.
+            </p>
           </div>
         </div>
       </section>
