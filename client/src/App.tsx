@@ -2,127 +2,103 @@ import { useEffect, useRef, useState } from "react";
 import "./index.css";
 
 export default function App() {
-  const [showBurst, setShowBurst] = useState(false);
-  const [copied, setCopied] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
+  const [burst, setBurst] = useState<string | null>(null);
 
-  const CONTRACT =
-    "So11111111111111111111111111111111111111112"; // ← замени на свой
+  const CONTRACT = "PASTE_YOUR_TOKEN_ADDRESS_HERE";
 
   useEffect(() => {
-    // анимация появления Johnny — ОДИН РАЗ и остаётся
-    if (heroRef.current) {
-      heroRef.current.classList.add("johnny-enter");
-    }
+    heroRef.current?.classList.add("johnny-enter");
   }, []);
 
-  const burst = () => {
-    setShowBurst(true);
-    setTimeout(() => setShowBurst(false), 600);
+  const pop = (text: string) => {
+    setBurst(text);
+    setTimeout(() => setBurst(null), 600);
   };
 
-  const scrollTo = (id: string) => {
+  const scrollTo = (id: string, text: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    burst();
+    pop(text);
   };
 
   const copyContract = async () => {
     await navigator.clipboard.writeText(CONTRACT);
-    setCopied(true);
-    burst();
-    setTimeout(() => setCopied(false), 1500);
+    pop("COPIED!");
   };
 
   return (
     <>
-      {/* COMIC BURST */}
-      {showBurst && (
-        <div className="comic-burst">
-          <span>POW!</span>
-          <span>BAM!</span>
-        </div>
-      )}
+      {burst && <div className="burst">{burst}</div>}
 
-      {/* HEADER */}
-      <header className="top">
-        <div className="logo">JB</div>
-        <div className="title">JOHNNY BRAVO</div>
-        <a
-          className="x-btn"
-          href="https://x.com"
-          target="_blank"
-          rel="noreferrer"
-        >
-          X COMMUNITY ↗
-        </a>
+      <header className="header">
+        <div className="logo">
+          <div className="logo-badge">JB</div>
+          Johnny Bravo
+        </div>
+        <button className="btn">X COMMUNITY ↗</button>
       </header>
 
-      {/* HERO */}
       <section className="hero">
-        <div className="hero-left">
-          <h1>WHOA<br />MAMA!</h1>
-          <p className="tagline">
-            THE ONE AND ONLY SITE FOR THE MAN, THE MYTH, THE POMPADOUR!
-          </p>
-
-          <div className="buttons">
-            <button onClick={() => scrollTo("ask")}>TALK TO ME, BABY!</button>
-            <button onClick={() => scrollTo("buy")}>CHECK THE PECS</button>
-            <button onClick={() => scrollTo("about")}>ABOUT</button>
+        <div>
+          <h1>WHOA<br/>MAMA!</h1>
+          <p>The one and only site for the man, the myth, the pompadour!</p>
+          <div className="hero-buttons">
+            <button className="btn primary" onClick={() => scrollTo("ask", "POW!")}>
+              TALK TO ME, BABY!
+            </button>
+            <button className="btn" onClick={() => scrollTo("lifestyle", "BAM!")}>
+              CHECK THE PECS
+            </button>
+            <button className="btn" onClick={() => scrollTo("about", "WOW!")}>
+              ABOUT
+            </button>
           </div>
         </div>
 
-        <div className="hero-right" ref={heroRef}>
+        <div className="hero-image" ref={heroRef}>
           <img src="/johnny-hero.png" alt="Johnny Bravo" />
-          <img className="coin" src="/johnny-coin.png" alt="Johnny Coin" />
         </div>
       </section>
 
-      {/* ABOUT */}
-      <section id="about" className="about">
+      <section id="about" className="section">
         <h2>ABOUT JOHNNY</h2>
-        <div className="about-box">
-          <p>
-            <strong>Johnny Bravo</strong> is not just a man — he’s a lifestyle.
-            A self-made legend with gravity-defying hair and unstoppable
-            confidence.
-          </p>
-          <p className="quote">“Man, I’m pretty.” — Johnny Bravo</p>
+        <div className="card">
+          Johnny Bravo is not just a man — he’s a lifestyle.  
+          A self-made legend with gravity-defying hair and unstoppable confidence.
+          <br/><br/>
+          <b>“Man, I’m pretty.”</b>
         </div>
       </section>
 
-      {/* HOW TO BUY */}
-      <section id="buy" className="how">
-        <h2>HOW TO BUY</h2>
-        <div className="how-box">
-          <div className="how-grid">
-            <div>Solana</div>
-            <div>Raydium</div>
-            <div>DEXTools</div>
-            <div>DEXScreener</div>
-            <div>DEXView</div>
-            <div>Jupiter</div>
-          </div>
+      <section id="lifestyle" className="section">
+        <h2>THE JOHNNY LIFESTYLE</h2>
+        <div className="cards">
+          <div className="card">THE HAIR<br/>It defies gravity, baby.</div>
+          <div className="card black">THE SHADES<br/>The sun never sets on cool.</div>
+          <div className="card">THE MOVES<br/>I don’t walk — I strut.</div>
+        </div>
+      </section>
 
-          <button className="copy" onClick={copyContract}>
-            📋 {copied ? "COPIED!" : "COPY CONTRACT"}
+      <section className="section yellow">
+        <h2>HOW TO BUY</h2>
+        <div className="buy-box">
+          <div className="buy-grid">
+            <div className="buy-item">Solana</div>
+            <div className="buy-item">Raydium</div>
+            <div className="buy-item">DEXTools</div>
+            <div className="buy-item">DEXScreener</div>
+            <div className="buy-item">DEXView</div>
+            <div className="buy-item">Jupiter</div>
+          </div>
+          <button className="copy-btn" onClick={copyContract}>
+            📋 COPY CONTRACT
           </button>
         </div>
       </section>
 
-      {/* ASK */}
-      <section id="ask" className="ask">
+      <section id="ask" className="section">
         <h2>ASK JOHNNY!</h2>
-        <div className="ask-box">
-          <img src="/johnny-hero.png" alt="Johnny" />
-          <div className="chat">
-            <p className="chat-title">
-              Hey pretty mama! Ask me anything. Hah-huh! 😎
-            </p>
-            <input placeholder="Talk to the hair..." />
-            <button onClick={burst}>▶</button>
-          </div>
-        </div>
+        <img src="/johnny-hero.png" style={{ maxWidth: 400 }} />
       </section>
     </>
   );
