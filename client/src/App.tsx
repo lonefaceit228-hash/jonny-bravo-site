@@ -9,6 +9,7 @@ export default function App() {
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const lifestyleRef = useRef<HTMLDivElement | null>(null);
+  const aboutRef = useRef<HTMLDivElement | null>(null);
 
   const getJohnnyReply = (text: string) => {
     const t = text.toLowerCase();
@@ -40,10 +41,6 @@ export default function App() {
     }
   };
 
-  const scrollToLifestyle = () => {
-    lifestyleRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <>
       {/* HEADER */}
@@ -66,7 +63,11 @@ export default function App() {
       {/* HERO */}
       <section className="hero">
         <div className="hero-text">
-          <h1>WHOA<br />MAMA!</h1>
+          <h1>
+            WHOA
+            <br />
+            MAMA!
+          </h1>
 
           <p className="hero-sub">
             The one and only site for the man, the myth, the pompadour!
@@ -74,8 +75,21 @@ export default function App() {
 
           <div className="hero-actions">
             <button className="primary-btn">TALK TO ME, BABY!</button>
-            <button className="secondary-btn" onClick={scrollToLifestyle}>
+            <button
+              className="secondary-btn"
+              onClick={() =>
+                lifestyleRef.current?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
               CHECK THE PECS
+            </button>
+            <button
+              className="secondary-btn"
+              onClick={() =>
+                aboutRef.current?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              ABOUT
             </button>
           </div>
         </div>
@@ -83,6 +97,30 @@ export default function App() {
         <div className="hero-images">
           <img src="/johnny-hero.png" className="hero-img" />
           <img src="/johnny-coin.png" className="coin-img" />
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section className="about" ref={aboutRef}>
+        <h2>ABOUT JOHNNY</h2>
+
+        <div className="about-box">
+          <p>
+            Johnny Bravo is not just a man — he’s a lifestyle.
+            <br />
+            A self-made legend with gravity-defying hair, sunglasses worn
+            indoors, and confidence measured in flexes per second.
+          </p>
+
+          <p>
+            Born cool. Raised cooler.
+            <br />
+            Johnny doesn’t chase trends — trends chase Johnny.
+          </p>
+
+          <p className="about-quote">
+            “Man, I’m pretty.” — Johnny Bravo
+          </p>
         </div>
       </section>
 
@@ -107,8 +145,8 @@ export default function App() {
             ⚡
             <h3>THE MOVES</h3>
             <p>
-              I don’t walk — I strut. Every step is a power move.
-              Confidence first, muscles second, rhythm always.
+              I don’t walk — I strut. Every step is a power move. Confidence
+              first, muscles second, rhythm always.
             </p>
           </div>
         </div>
