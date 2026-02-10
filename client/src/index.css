@@ -79,28 +79,30 @@ body {
   color: #ffd800;
 }
 
-/* HERO IMAGES + ANIMATION */
+/* 🔥 HERO IMAGES — КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ */
 .hero-images {
   position: relative;
-  opacity: 0;
-  transform: translateX(120px) scale(0.8);
+  opacity: 1;               /* ← больше НЕ 0 */
+  transform: translateX(0) scale(1);
 }
 
 .hero-images.show {
   animation: heroEnter 0.9s ease-out forwards;
+  animation-fill-mode: forwards; /* ← ФИКС */
 }
 
 @keyframes heroEnter {
   0% {
     opacity: 0;
-    transform: translateX(120px) scale(0.7);
+    transform: translateX(140px) scale(0.7);
   }
   70% {
     opacity: 1;
     transform: translateX(-10px) scale(1.05);
   }
   100% {
-    transform: translateX(0) scale(1);
+    opacity: 1;
+    transform: translateX(0) scale(1); /* ← ОСТАЁТСЯ */
   }
 }
 
@@ -119,56 +121,6 @@ body {
   border: 5px solid #000;
 }
 
-/* ABOUT */
-.about {
-  background: #fff;
-  padding: 90px;
-  text-align: center;
-}
-
-.about h2 {
-  font-size: 54px;
-  transform: skew(-6deg);
-}
-
-.about-box {
-  max-width: 760px;
-  margin: 0 auto;
-  background: #ffd800;
-  border: 5px solid #000;
-  padding: 36px;
-}
-
-.about-quote {
-  font-style: italic;
-  font-weight: 900;
-}
-
-/* LIFESTYLE */
-.lifestyle {
-  background: #fff;
-  padding: 90px;
-  text-align: center;
-}
-
-.cards {
-  display: flex;
-  gap: 28px;
-  justify-content: center;
-}
-
-.card {
-  border: 5px solid #000;
-  padding: 36px;
-  width: 280px;
-  font-weight: 900;
-}
-
-.card.dark {
-  background: #000;
-  color: #fff;
-}
-
 /* ASK */
 .ask {
   padding: 90px;
@@ -179,7 +131,6 @@ body {
   display: flex;
   justify-content: center;
   gap: 28px;
-  margin-top: 28px;
 }
 
 .chat-box img {
@@ -198,25 +149,6 @@ body {
   border: 3px solid #000;
   padding: 14px;
   margin-bottom: 14px;
-}
-
-.input-row {
-  display: flex;
-  gap: 10px;
-}
-
-.input-row input {
-  flex: 1;
-  padding: 10px;
-  border: 3px solid #000;
-}
-
-.input-row button {
-  background: #000;
-  color: #ffd800;
-  border: none;
-  padding: 0 20px;
-  cursor: pointer;
 }
 
 /* 💥 COMIC BURST */
