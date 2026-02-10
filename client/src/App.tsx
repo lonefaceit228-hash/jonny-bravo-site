@@ -1,33 +1,72 @@
 import { useState } from "react";
 import johnnyImg from "./assets/johnny-bravo.png";
+import hah from "./assets/hah-huh.mp3";
 
 export default function App() {
   const [message, setMessage] = useState("");
   const [reply, setReply] = useState(
-    "Hey pretty mama! Ask me anything. Hah-huh! 😎"
+    "Hey pretty mama! Ask me anything 😎"
   );
+  const [loading, setLoading] = useState(false);
 
-  const talkToJohnny = () => {
+  const playSound = () => {
+    const audio = new Audio(hah);
+    audio.play();
+  };
+
+  const askJohnny = async () => {
     if (!message.trim()) return;
 
-    const text = message.toLowerCase();
+    setLoading(true);
 
-    let answer = "Hah? Say that again, pretty! 💪😏";
+    try {
+      // ⚠️ ЕСЛИ НЕТ API — Johnny отвечает локально
+      if (!import.meta.env.VITE_OPENAI_KEY) {
+        const localReplies = [
+          "How am I? Looking good, feeling great, flexing constantly 💪😎",
+          "Confidence is my cardio, baby.",
+          "Mirror and I agree — perfection.",
+          "Easy there, mama. I'm sensitive… and muscular.",
+        ];
+        const random =
+          localReplies[Math.floor(Math.random() * localReplies.length)];
+        setReply(`Johnny says: ${random}`);
+        playSound();
+        setMessage("");
+        return;
+      }
 
-    if (text.includes("how are you")) {
-      answer =
-        "How am I? Looking good, feeling great, and flexing constantly. 💪😎";
-    } else if (text.includes("hello") || text.includes("hi")) {
-      answer = "Hey there, baby! Johnny Bravo in the house! 😎👉";
-    } else if (text.includes("love")) {
-      answer = "Love? Careful, pretty mama. I break hearts daily. 💔😏";
-    } else if (text.includes("who are you")) {
-      answer =
-        "Who am I? Muscles. Hair. Sunglasses. Legend. Johnny Bravo. 😎";
+      // 🤖 REAL AI JOHNNY
+      const res = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${import.meta.env.VITE_OPENAI_KEY}`,
+        },
+        body: JSON.stringify({
+          model: "gpt-4o-mini",
+          messages: [
+            {
+              role: "system",
+              content:
+                "You are Johnny Bravo. Speak confidently, funny, flirty, cartoon-style. Short punchy answers.",
+            },
+            { role: "user", content: message },
+          ],
+        }),
+      });
+
+      const data = await res.json();
+      const text = data.choices[0].message.content;
+
+      setReply(`Johnny says: ${text}`);
+      playSound();
+      setMessage("");
+    } catch (e) {
+      setReply("Whoa mama… something broke 💥");
+    } finally {
+      setLoading(false);
     }
-
-    setReply(answer);
-    setMessage("");
   };
 
   return (
@@ -50,7 +89,7 @@ export default function App() {
       </header>
 
       {/* HERO */}
-      <section className="hero">
+      <section className="hero container">
         <div className="hero-left">
           <h1 className="hero-title">
             WHOA <br /> MAMA!
@@ -61,7 +100,16 @@ export default function App() {
           </p>
 
           <div className="hero-buttons">
-            <button className="btn btn-primary">TALK TO ME, BABY!</button>
+            <button
+              className="btn btn-primary"
+              onClick={() =>
+                document
+                  .getElementById("ask")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              TALK TO ME, BABY!
+            </button>
             <button className="btn btn-outline">CHECK THE PECS</button>
           </div>
         </div>
@@ -74,28 +122,30 @@ export default function App() {
       </section>
 
       {/* ASK JOHNNY */}
-      <section className="ask">
-        <h2>ASK JOHNNY!</h2>
-        <p>I'm pretty, you're pretty. Let's talk!</p>
+      <section id="ask" className="ask">
+        <div className="container">
+          <h2>ASK JOHNNY!</h2>
+          <p>I'm pretty, you're pretty. Let's talk.</p>
 
-        <div className="chat">
-          <div className="chat-image">
-            <img src={johnnyImg} alt="Johnny Bravo" />
-          </div>
-
-          <div className="chat-box">
-            <div className="bubble">
-              <strong>Johnny says:</strong> {reply}
+          <div className="chat">
+            <div className="chat-image">
+              <img src={johnnyImg} alt="Johnny" />
             </div>
 
-            <div className="input-row">
-              <input
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="Talk to the hair..."
-                onKeyDown={(e) => e.key === "Enter" && talkToJohnny()}
-              />
-              <button onClick={talkToJohnny}>▶</button>
+            <div className="chat-box">
+              <div className="bubble">
+                {loading ? "Thinking… 😎" : reply}
+              </div>
+
+              <div className="input-row">
+                <input
+                  placeholder="Talk to the hair..."
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && askJohnny()}
+                />
+                <button onClick={askJohnny}>▶</button>
+              </div>
             </div>
           </div>
         </div>
