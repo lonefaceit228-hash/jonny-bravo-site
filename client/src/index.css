@@ -1,80 +1,180 @@
-@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Permanent+Marker&display=swap");
-
-/* Reset */
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
-/* Root theme */
-:root {
-  --bravo-yellow: #ffd700;
-  --bravo-black: #000000;
-  --bravo-blue: #0000ff;
-  --bravo-pink: #ff00ff;
-
-  --font-display: "Bangers", cursive;
-  --font-body: "Comic Neue", cursive;
-  --font-comic: "Permanent Marker", cursive;
-
-  background-color: var(--bravo-yellow);
-  color: var(--bravo-black);
-}
-
-/* Base body */
 body {
-  font-family: var(--font-body);
-  background-color: var(--bravo-yellow);
-  color: var(--bravo-black);
-  min-height: 100vh;
+  margin: 0;
+  font-family: "Comic Neue", cursive;
+  background: #ffd900;
+  color: #000;
 }
 
-/* App wrapper */
-#root {
-  min-height: 100vh;
+/* NAVBAR */
+.navbar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  border-bottom: 4px solid black;
 }
 
-/* Headings */
-h1, h2, h3 {
-  font-family: var(--font-display);
-  letter-spacing: 1px;
+.logo {
+  font-weight: 700;
+  font-size: 20px;
 }
 
-/* Links */
-a {
-  color: var(--bravo-blue);
+.logo-box {
+  background: black;
+  color: white;
+  padding: 6px 8px;
+  margin-right: 8px;
+}
+
+.community-btn {
+  border: 3px solid black;
+  padding: 10px 16px;
   text-decoration: none;
+  color: black;
+  font-weight: bold;
 }
 
-a:hover {
-  text-decoration: underline;
+/* HERO */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 60px;
+  gap: 40px;
 }
 
-/* Buttons */
-button {
-  font-family: var(--font-comic);
-  background: var(--bravo-black);
-  color: var(--bravo-yellow);
-  border: none;
-  padding: 12px 20px;
+.hero h1 {
+  font-family: "Bangers", cursive;
+  font-size: 96px;
+  margin: 0;
+}
+
+.subtitle {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 12px;
+  border-left: 6px solid black;
+  max-width: 420px;
+}
+
+.buttons {
+  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+}
+
+.btn {
+  padding: 14px 24px;
+  font-weight: bold;
+  border: 3px solid black;
   cursor: pointer;
-  border-radius: 8px;
 }
 
-button:hover {
-  background: var(--bravo-pink);
+.primary {
+  background: #ffea00;
+}
+
+.secondary {
+  background: white;
+}
+
+.hero-card {
+  background: white;
+  border: 6px solid black;
+  padding: 20px;
+  transform: rotate(-2deg);
+}
+
+.hero-card img {
+  width: 100%;
+}
+
+/* FEATURES */
+.features {
+  background: white;
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.features h2 {
+  font-family: "Bangers", cursive;
+  font-size: 56px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.feature-card {
+  border: 4px solid black;
+  padding: 24px;
+}
+
+.feature-card.dark {
+  background: black;
   color: white;
 }
 
-/* Utility */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px;
+/* ASK */
+.ask {
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.ask h2 {
+  font-family: "Bangers", cursive;
+  font-size: 64px;
+}
+
+.chat {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.chat-image {
+  background: white;
+  border: 4px solid black;
+  padding: 16px;
+}
+
+.chat-image img {
+  width: 100%;
+}
+
+.chat-box {
+  background: white;
+  border: 4px solid black;
+  padding: 20px;
+}
+
+.bubble {
+  border: 3px solid black;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.input-row input {
+  flex: 1;
+  padding: 12px;
+  border: 3px solid black;
+}
+
+.input-row button {
+  padding: 12px 16px;
+  border: 3px solid black;
+  cursor: pointer;
 }
 
