@@ -4,15 +4,29 @@ import johnnyImg from "./assets/johnny-bravo.png";
 export default function App() {
   const [message, setMessage] = useState("");
   const [reply, setReply] = useState(
-    "Hey pretty mama! Or handsome dude! Ask me anything! Hah-huh!"
+    "Hey pretty mama! Ask me anything. Hah-huh! 😎"
   );
 
-  const handleSend = () => {
+  const talkToJohnny = () => {
     if (!message.trim()) return;
 
-    setReply(
-      `Johnny says: "${message}"? Heh. Nice one, baby! 💪😎`
-    );
+    const text = message.toLowerCase();
+
+    let answer = "Hah? Say that again, pretty! 💪😏";
+
+    if (text.includes("how are you")) {
+      answer =
+        "How am I? Looking good, feeling great, and flexing constantly. 💪😎";
+    } else if (text.includes("hello") || text.includes("hi")) {
+      answer = "Hey there, baby! Johnny Bravo in the house! 😎👉";
+    } else if (text.includes("love")) {
+      answer = "Love? Careful, pretty mama. I break hearts daily. 💔😏";
+    } else if (text.includes("who are you")) {
+      answer =
+        "Who am I? Muscles. Hair. Sunglasses. Legend. Johnny Bravo. 😎";
+    }
+
+    setReply(answer);
     setMessage("");
   };
 
@@ -59,28 +73,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* LIFESTYLE */}
-      <section className="lifestyle">
-        <h2>THE JOHNNY LIFESTYLE</h2>
-
-        <div className="cards">
-          <div className="card">
-            <h3>THE HAIR</h3>
-            <p>It defies gravity, baby. Just like my charm.</p>
-          </div>
-
-          <div className="card card-dark">
-            <h3>THE SHADES</h3>
-            <p>I wear them indoors because the sun never sets on cool.</p>
-          </div>
-
-          <div className="card">
-            <h3>THE MOVES</h3>
-            <p>Certified disco ninja since 1997.</p>
-          </div>
-        </div>
-      </section>
-
       {/* ASK JOHNNY */}
       <section className="ask">
         <h2>ASK JOHNNY!</h2>
@@ -88,19 +80,22 @@ export default function App() {
 
         <div className="chat">
           <div className="chat-image">
-            <img src={johnnyImg} alt="Johnny" />
+            <img src={johnnyImg} alt="Johnny Bravo" />
           </div>
 
           <div className="chat-box">
-            <div className="bubble">{reply}</div>
+            <div className="bubble">
+              <strong>Johnny says:</strong> {reply}
+            </div>
 
             <div className="input-row">
               <input
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Talk to the hair..."
+                onKeyDown={(e) => e.key === "Enter" && talkToJohnny()}
               />
-              <button onClick={handleSend}>➤</button>
+              <button onClick={talkToJohnny}>▶</button>
             </div>
           </div>
         </div>
@@ -108,4 +103,3 @@ export default function App() {
     </>
   );
 }
-
