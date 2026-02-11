@@ -5,21 +5,26 @@ export default function App() {
     <>
       <header>
         <div className="logo">
-          <span>JB</span> Johnny Bravo
+          <span>JB</span>
+          Johnny Bravo
         </div>
+
         <button className="header-btn">X COMMUNITY ↗</button>
       </header>
 
       <section className="hero">
         <div className="hero-text">
-          <h1>WHOA<br />MAMA!</h1>
+          <h1>
+            WHOA<br />
+            MAMA!
+          </h1>
 
           <div className="subtitle">
             The one and only site for the man, the myth, the pompadour!
           </div>
 
           <div className="buttons">
-            <button>TALK TO ME, BABY!</button>
+            <button className="primary">TALK TO ME, BABY!</button>
             <button>CHECK THE PECS</button>
             <button>ABOUT</button>
           </div>
@@ -29,27 +34,6 @@ export default function App() {
           <img src="/johnny-hero.png" alt="Johnny Bravo" />
           <img className="coin" src="/johnny-coin.png" alt="Johnny Coin" />
         </div>
-      </section>
-
-      <section className="how-to-buy">
-        <h2 className="section-title">HOW TO BUY</h2>
-
-        <div className="buy-box">
-          <div className="buy-grid">
-            <div>SOLANA</div>
-            <div>RAYDIUM</div>
-            <div>DEXTOOLS</div>
-            <div>DEXSCREENER</div>
-            <div>DEXVIEW</div>
-            <div>JUPITER</div>
-          </div>
-
-          <button className="copy-btn">📋 COPY CONTRACT</button>
-        </div>
-      </section>
-
-      <section className="ask">
-        <h2 className="section-title">ASK JOHNNY!</h2>
       </section>
     </>
   );
