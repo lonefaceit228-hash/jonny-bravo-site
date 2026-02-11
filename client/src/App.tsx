@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import "./index.css";
 
 export default function App() {
-  const heroRef = useRef<HTMLImageElement | null>(null);
   const [showBurst, setShowBurst] = useState(false);
+  const heroRef = useRef<HTMLImageElement | null>(null);
 
   useEffect(() => {
     if (heroRef.current) {
@@ -22,15 +22,15 @@ export default function App() {
   };
 
   return (
-    <div className="page">
+    <>
       {/* HEADER */}
       <header className="header">
-        <div className="logo">JB <span>Johnny Bravo</span></div>
+        <div className="logo">JB Johnny Bravo</div>
         <a
-          className="x-btn"
-          href="https://x.com"
+          href="https://x.com/"
           target="_blank"
           rel="noreferrer"
+          className="x-btn"
         >
           X COMMUNITY ↗
         </a>
@@ -39,14 +39,21 @@ export default function App() {
       {/* HERO */}
       <section className="hero">
         <div className="hero-text">
-          <h1>WHOA<br />MAMA!</h1>
+          <h1>
+            WHOA
+            <br />
+            MAMA!
+          </h1>
+
           <p className="subtitle">
             The one and only site for the man, the myth, the pompadour!
           </p>
 
           <div className="buttons">
             <button onClick={() => scrollTo("ask")}>TALK TO ME, BABY!</button>
-            <button onClick={() => scrollTo("lifestyle")}>CHECK THE PECS</button>
+            <button onClick={() => scrollTo("lifestyle")}>
+              CHECK THE PECS
+            </button>
             <button onClick={() => scrollTo("about")}>ABOUT</button>
           </div>
         </div>
@@ -56,56 +63,40 @@ export default function App() {
             ref={heroRef}
             src="/johnny-hero.png"
             alt="Johnny Bravo"
+            className="johnny"
           />
           <img
-            className="coin"
             src="/johnny-coin.png"
             alt="Johnny Coin"
+            className="coin"
           />
         </div>
 
         {showBurst && <div className="burst">POW! BAM!</div>}
       </section>
 
-      {/* ABOUT */}
-      <section id="about" className="about">
-        <h2>ABOUT JOHNNY</h2>
-        <div className="about-box">
-          <p>
-            Johnny Bravo is not just a man — he’s a lifestyle.  
-            A self-made legend with gravity-defying hair and unstoppable confidence.
-          </p>
-          <p className="quote">“Man, I’m pretty.” — Johnny Bravo</p>
-        </div>
-      </section>
+      {/* HOW TO BUY */}
+      <section className="how-to-buy">
+        <h2>HOW TO BUY</h2>
 
-      {/* LIFESTYLE */}
-      <section id="lifestyle" className="lifestyle">
-        <h2>THE JOHNNY LIFESTYLE</h2>
-
-        <div className="cards">
-          <div className="card">
-            <h3>THE HAIR</h3>
-            <p>It defies gravity, baby.</p>
+        <div className="buy-box">
+          <div className="buy-grid">
+            <div>Solana</div>
+            <div>Raydium</div>
+            <div>DEXTools</div>
+            <div>DEXScreener</div>
+            <div>DEXView</div>
+            <div>Jupiter</div>
           </div>
 
-          <div className="card dark">
-            <h3>THE SHADES</h3>
-            <p>The sun never sets on cool.</p>
-          </div>
-
-          <div className="card">
-            <h3>THE MOVES</h3>
-            <p>I don’t walk — I strut.</p>
-          </div>
+          <button className="copy-btn">📋 COPY CONTRACT</button>
         </div>
       </section>
 
       {/* ASK */}
       <section id="ask" className="ask">
         <h2>ASK JOHNNY!</h2>
-        <img src="/johnny-hero.png" alt="Johnny" />
       </section>
-    </div>
+    </>
   );
 }
